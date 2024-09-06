@@ -37,7 +37,7 @@ $f\left(p\right)\ =\ \frac{\sum_{n=1}^{3}p\left[n\right]}{255\cdot3}^{2}$ and mi
 With the resulting array from the previous operation every row is then iterated, upsampled using linear interpolation, and used as the multiplier for the current tone.  
 
 TL;DR: Basically treat every linearly upsampled row of the image as a amplitude multiplier for the current tone.  
-For more information on how each tone is created please read [`i2s.py` starting at line 122](i2s.py#L122).
+For more information on how each tone is created please read [`i2s.py` starting at line 124](i2s.py#L124).
 
 ## Arguments
 
