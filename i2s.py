@@ -2,11 +2,10 @@ import argparse
 import random
 import numpy as np
 import pydub
-import math
-import PIL.Image as Image
 
 from enum import Enum
 from tqdm import tqdm
+from PIL import Image
 
 c_sample_rate = 44100
 c_duration = 8
@@ -103,7 +102,7 @@ def main():
 	duration = arguments.duration
 	step_y = arguments.step_y
 
-	assert tone_offset in OffsetMode, f"Unknown offset mode {tone_offset}"
+	assert tone_offset in OffsetMode, f"Unknown offset mode {tone_offset}, valid offset methods: {enum_to_string(OffsetMode)}"
 	assert step_y >= 1, "Expected step-y to be 1 or higher"
 	
 	sample_count = round(sample_rate * duration)
@@ -122,8 +121,9 @@ def main():
 	print(f"Step Y: {step_y}, Offset method: {tone_offset}")
 
 	time_values = np.linspace(0, duration, int(duration * sample_rate), endpoint=False)
+	offset = 0
 	bar = tqdm(total=sy)
-
+	
 	for y in range(0, sy, step_y):
 		percentage = (y + 1) / sy
 		base_frequency = percentage * freq_range + freq_min
